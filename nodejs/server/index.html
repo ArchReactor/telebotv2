@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<meta name='keywords' content='WebRTC, HTML5, JavaScript' />
+<meta name='description' content='WebRTC Reference App' />
+<meta name='viewport' content='width=device-width,initial-scale=1'>
+
+<base target='_blank'>
+
+<title>WebRTC client</title>
+	<link rel="stylesheet" href="/jq/css/themes/default/jquery.mobile.theme-1.4.2.min.css">
+	<link rel="stylesheet" href="/jq/css/themes/default/jquery.mobile-1.4.2.min.css">
+	<script src="/jq/jquery-2.1.1.min.js"></script>
+	<script src="/jq/jquery.json-2.4.0.min.js"></script>
+	<script src="/jq/jquery.websocket-0.0.4.js"></script>
+	<script src="/jq/jquery.mobile-1.4.2.min.js"></script>
+
+<style>
+@media (min-width:320px) {
+	#remoteVideo { width:300px }
+	#localVideo { width:100px; }
+}
+@media (min-width:641px) {
+	#remoteVideo { width:480px }
+	#localVideo { width:100px; }
+}
+
+
+</style>
+</head>
+
+<body>
+
+	<div id='videos' style="float:left;">
+	<video id='remoteVideo' autoplay></video>
+	</div>
+<div style="width:400px;float:left;">
+	<div class="ui-grid-d">
+		<div class="ui-block-a"><a href="#" id="speed1" data-speed="1" class="spdbutton ui-shadow ui-btn ui-corner-all ui-btn-inline ui-btn-icon-right ui-icon-star" >Spd1</a></div>
+		<div class="ui-block-b">&nbsp;</div>
+		<div class="ui-block-c"><a href="#" id="dir7" data-dir="7" class="navbutton ui-shadow ui-btn ui-corner-all ui-btn-inline ui-btn-icon-notext ui-icon-arrow-u-l" ></a></div>
+		<div class="ui-block-d"><a href="#" id="dir8" data-dir="8" class="navbutton ui-shadow ui-btn ui-corner-all ui-btn-inline ui-btn-icon-notext ui-icon-arrow-u" ></a></div>
+		<div class="ui-block-e"><a href="#" id="dir9" data-dir="9" class="navbutton ui-shadow ui-btn ui-corner-all ui-btn-inline ui-btn-icon-notext ui-icon-arrow-u-r" ></a></div>
+	</div>
+	<div class="ui-grid-d">
+		<div class="ui-block-a"><a href="#" id="speed2" data-speed="2" class="spdbutton ui-shadow ui-btn ui-corner-all ui-btn-inline ui-btn-icon-right " >Spd2</a></div>
+		<div class="ui-block-d">&nbsp;</div>
+		<div class="ui-block-c"><a href="#" id="dir4" data-dir="4" class="navbutton ui-shadow ui-btn ui-corner-all ui-btn-inline ui-btn-icon-notext ui-icon-arrow-l" ></a></div>
+		<div class="ui-block-d"><a href="#" id="dir5" data-dir="5" class="navbutton ui-alt-icon ui-shadow ui-btn ui-corner-all ui-btn-inline ui-btn-icon-notext ui-icon-delete" ></a></div>
+		<div class="ui-block-e"><a href="#" id="dir6" data-dir="6" class="navbutton ui-shadow ui-btn ui-corner-all ui-btn-inline ui-btn-icon-notext ui-icon-arrow-r" ></a></div>
+	</div>
+	<div class="ui-grid-d">
+		<div class="ui-block-a"><a href="#" id="speed3" data-speed="3" class="spdbutton ui-shadow ui-btn ui-corner-all ui-btn-inline ui-btn-icon-right " >Spd3</a></div>
+		<div class="ui-block-d">&nbsp;</div>
+		<div class="ui-block-c"><a href="#" id="dir1" data-dir="1" class="navbutton ui-shadow ui-btn ui-corner-all ui-btn-inline ui-btn-icon-notext ui-icon-arrow-d-l" ></a></div>
+		<div class="ui-block-d"><a href="#" id="dir2" data-dir="2" class="navbutton ui-shadow ui-btn ui-corner-all ui-btn-inline ui-btn-icon-notext ui-icon-arrow-d" ></a></div>
+		<div class="ui-block-e"><a href="#" id="dir3" data-dir="3" class="navbutton ui-shadow ui-btn ui-corner-all ui-btn-inline ui-btn-icon-notext ui-icon-arrow-d-r" ></a></div>
+	</div>
+	<div >
+	<video id='localVideo' autoplay muted></video>
+	</div>
+</div>
+<script src='/socket.io/socket.io.js'></script>
+<script src='js/lib/adapter.js'></script>
+<script src='js/main.js'></script>
+
+<script>
+	$().ready(function () {
+		$('.spdbutton').click(function() {
+			$('.spdbutton').removeClass('ui-icon-star');
+			socket.emit('robot', {cmd:'speed', data: $(this).data('speed') });
+		});
+		
+		$('.navbutton').click(function() {
+			$('.navbutton').removeClass('ui-alt-icon');
+			socket.emit('robot', {cmd:'dir', data: $(this).data('dir') });
+		});
+		
+	});
+	socket.on('robot', function(data) {
+		console.log(data);
+		if(data['cmd'] == 'speed') {
+			$('.spdbutton').removeClass('ui-icon-star');
+			$('#speed' + data['data']).addClass('ui-icon-star');
+		}
+		if(data['cmd'] == 'dir') {
+			$('.navbutton').removeClass('ui-alt-icon');
+			$('#dir' + data['data']).addClass('ui-alt-icon');
+		}
+	});
+
+	</script>
+
+</body>
+</html>
