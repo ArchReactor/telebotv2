@@ -33,3 +33,4 @@ $ node server.js
  
 NOTES:
  - for testing purposes, the server code will happily run without an arduino, and you'll see the "move" commands in the console.  it will not auto-detect if you plug an arduino in later.
+ - re-connection code is basically non-existant.  if the 2nd device reconnects it'll sometimes work, but reconnecting the first device requires restarting the server.js.  Recomend refreshing all devices after stopping the server to get a "page not found" to prevent other odd issues.  This is one area that needs work, patches welcome!
