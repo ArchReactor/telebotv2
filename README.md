@@ -31,3 +31,5 @@ $ node server.js
  - load web page at your IP and port 2013, such as http://localhost:2013
  - connect from a 2nd device for remote driving
  
+NOTES:
+ - for testing purposes, the server code will happily run without an arduino, and you'll see the "move" commands in the console.  it will not auto-detect if you plug an arduino in later.
