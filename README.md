@@ -22,7 +22,7 @@ Installation:  internet is required durring installation, but not to run the cod
  - edit telebot scketch to reflect your pin choices for the motor controller.  if using h-bridge see RobotCore's examples and edit as needed.
  - upload sketch
  - cd to nodejs/server folder
- - install node modules (npm install socket.io node-static and serialport
+ - install node modules (npm install socket.io node-static serialport)
  - if you do not have an offical Arduino you'll need to edit server.js to set the USB detection to match what you have
  - run server with command: 
 ```sh
