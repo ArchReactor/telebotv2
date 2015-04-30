@@ -26,7 +26,7 @@ Installation:  internet is required durring installation, but not to run the cod
  - if you do not have an offical Arduino you'll need to edit server.js to set the USB detection to match what you have
  - run server with command: 
 ```sh
-$ nodejs server.js
+$ node server.js
 ```
  - load web page at your IP and port 2013, such as http://localhost:2013
  - connect from a 2nd device for remote driving
