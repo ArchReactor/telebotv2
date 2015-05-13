@@ -11,10 +11,10 @@ Hadrware:
  - power wheelchair base
  - any arduino
  - motor controller (RobotCore is configurable for servo based or H-bridge)
- - a PC that can run nodejs and Chrome or Firefox
+ - a PC that can run nodejs and Chrome or Firefox.
  - optional: IR remote
 
-Installation:  internet is required durring installation, but not to run the code
+Installation:  internet is required during installation, but not to run the code
  - download repo
  - copy RobotCore to your arduino libraries folder
  - install arduino SPI, Servo, and IRremote libraries as per thier instructions
@@ -33,4 +33,6 @@ $ node server.js
  
 NOTES:
  - for testing purposes, the server code will happily run without an arduino, and you'll see the "move" commands in the console.  it will not auto-detect if you plug an arduino in later.
- - re-connection code is basically non-existant.  if the 2nd device reconnects it'll sometimes work, but reconnecting the first device requires restarting the server.js.  Recomend refreshing all devices after stopping the server to get a "page not found" to prevent other odd issues.  This is one area that needs work, patches welcome!
+ - re-connection is now working!  if the 2nd device reconnects it'll mostly work, sometimes it takes 2 tries.  If the initial device disconnections, you must close both browser tabs and reconnect the "first" device first.  usually the "first" device is the robot's device.
+ - it is possible to run the node server on a 3rd device.  RaspberyPi has been tested with node 0.10.16.  newer versions may not work due to issues with the SerialPort module.
+ 
