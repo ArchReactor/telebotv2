@@ -126,7 +126,7 @@ function maybeStart() {
     if (isInitiator) {
       doCall();
     }
-  }
+  }	  
 }
 
 window.onbeforeunload = function(e){
@@ -232,10 +232,8 @@ function requestTurn(turn_url) {
 
 function handleRemoteStreamAdded(event) {
   console.log('Remote stream added.');
- // reattachMediaStream(miniVideo, localVideo);
   attachMediaStream(remoteVideo, event.stream);
   remoteStream = event.stream;
-//  waitForRemoteVideo();
 }
 function handleRemoteStreamRemoved(event) {
   console.log('Remote stream removed. Event: ', event);
@@ -250,7 +248,7 @@ function hangup() {
 function handleRemoteHangup() {
   console.log('Session terminated.');
   stop();
-  isInitiator = false;
+  //isInitiator = false;
 }
 
 function stop() {
