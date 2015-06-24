@@ -59,6 +59,7 @@ Raspberry Pi Linux:
    echo 'export PATH="$PATH:/opt/node/bin"' >> ~/.bashrc
    source ~/.bashrc
 ```
+I have had some difficulty in repeating this on a clean install.  Copying folders from the sucessful one to the unsuccessful one does result it in it working, so something in npm may be breaking it and maybe be fixed later.
 
 NOTES:
 - for testing purposes, the server code will happily run without an arduino, and you'll see the "move" commands in the console.  it will not auto-detect if you plug an arduino in later.
